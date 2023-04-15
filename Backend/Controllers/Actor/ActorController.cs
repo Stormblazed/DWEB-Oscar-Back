@@ -16,4 +16,10 @@ public class ActorController : ApiControllerBase
 
         return await Ok(command);
     }
+
+    [HttpPost("create-actor")]
+    public async Task<IActionResult> PostActor([FromBody] PostActorCommand command)
+    {
+        return await Ok(command);
+    }
 }
