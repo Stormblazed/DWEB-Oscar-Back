@@ -22,4 +22,16 @@ public class ActorController : ApiControllerBase
     {
         return await Ok(command);
     }
+
+    [HttpPut("update-actor")]
+    public async Task<IActionResult> PutActor([FromBody] PutActorCommand command)
+    {
+        return await Ok(command);
+    }
+
+    [HttpDelete("delete-actor")]
+    public async Task<IActionResult> DeleteActor([FromBody] DeleteActorCommand command)
+    {
+        return await Ok(command);
+    }
 }
