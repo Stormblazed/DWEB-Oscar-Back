@@ -21,7 +21,7 @@ public class DeleteActorCommandHandler : IRequestHandler<DeleteActorCommand, Del
     {
         var request = new DeleteActorRequest
         {
-            Codigo = command.Codigo,
+            Codigo = command.Codigo
         };
 
         return _service.DeleteActor(request);

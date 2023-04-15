@@ -2,6 +2,7 @@
 using Domain.Actor.GET;
 using Domain.Actor.POST;
 using Domain.Actor.PUT;
+using Domain.Director.DELETE;
 using Domain.Director.GET;
 using Domain.Director.POST;
 using Domain.Director.PUT;
@@ -9,6 +10,7 @@ using Infrastructure.Actor.DELETE;
 using Infrastructure.Actor.GET;
 using Infrastructure.Actor.POST;
 using Infrastructure.Actor.PUT;
+using Infrastructure.Director.DELETE;
 using Infrastructure.Director.GET;
 using Infrastructure.Director.POST;
 using Infrastructure.Director.PUT;
@@ -32,6 +34,7 @@ public static class InfrastructureServices
         services.AddSingleton<IGetDirectorService, GetDirectorService>();
         services.AddSingleton<IPostDirectorService, PostDirectorService>();
         services.AddSingleton<IPutDirectorService, PutDirectorService>();
+        services.AddSingleton<IDeleteDirectorService,DeleteDirectorService>();
 
         return services;
     }
