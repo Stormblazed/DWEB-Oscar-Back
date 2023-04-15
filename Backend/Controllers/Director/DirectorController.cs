@@ -13,4 +13,12 @@ public  class DirectorController : ApiControllerBase
         return await Ok(command);
     }
 
+    [HttpPost("save-director")]
+    public async Task<IActionResult> PostDirector([FromBody] PostDirectorCommand command)
+    {
+        return await Ok(command);
+    }
+
+
+
 }
