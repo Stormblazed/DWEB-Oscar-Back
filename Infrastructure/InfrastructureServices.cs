@@ -2,6 +2,10 @@
 using Domain.Actor.GET;
 using Domain.Actor.POST;
 using Domain.Actor.PUT;
+using Domain.Category.DELETE;
+using Domain.Category.GET;
+using Domain.Category.POST;
+using Domain.Category.PUT;
 using Domain.Director.DELETE;
 using Domain.Director.GET;
 using Domain.Director.POST;
@@ -10,6 +14,10 @@ using Infrastructure.Actor.DELETE;
 using Infrastructure.Actor.GET;
 using Infrastructure.Actor.POST;
 using Infrastructure.Actor.PUT;
+using Infrastructure.Category.DELETE;
+using Infrastructure.Category.GET;
+using Infrastructure.Category.POST;
+using Infrastructure.Category.PUT;
 using Infrastructure.Director.DELETE;
 using Infrastructure.Director.GET;
 using Infrastructure.Director.POST;
@@ -35,6 +43,12 @@ public static class InfrastructureServices
         services.AddSingleton<IPostDirectorService, PostDirectorService>();
         services.AddSingleton<IPutDirectorService, PutDirectorService>();
         services.AddSingleton<IDeleteDirectorService,DeleteDirectorService>();
+
+        //Director
+        services.AddSingleton<IGetCategoryService, GetCategoryService>();
+        services.AddSingleton<IPostCategoryService, PostCategoryService>();
+        services.AddSingleton<IPutCategoryService, PutCategoryService>();
+        services.AddSingleton<IDeleteCategoryService, DeleteCategoryService>();
 
         return services;
     }
