@@ -2,10 +2,12 @@
 using Domain.Actor.POST;
 using Domain.Director.GET;
 using Domain.Director.POST;
+using Domain.Director.PUT;
 using Infrastructure.Actor.GET;
 using Infrastructure.Actor.POST;
 using Infrastructure.Director.GET;
 using Infrastructure.Director.POST;
+using Infrastructure.Director.PUT;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,6 +25,7 @@ public static class InfrastructureServices
         //Director
         services.AddSingleton<IGetDirectorService, GetDirectorService>();
         services.AddSingleton<IPostDirectorService, PostDirectorService>();
+        services.AddSingleton<IPutDirectorService, PutDirectorService>();
 
         return services;
     }
