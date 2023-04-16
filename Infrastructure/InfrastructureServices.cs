@@ -10,6 +10,10 @@ using Domain.Director.DELETE;
 using Domain.Director.GET;
 using Domain.Director.POST;
 using Domain.Director.PUT;
+using Domain.WhatchFrom.DELETE;
+using Domain.WhatchFrom.GET;
+using Domain.WhatchFrom.POST;
+using Domain.WhatchFrom.PUT;
 using Infrastructure.Actor.DELETE;
 using Infrastructure.Actor.GET;
 using Infrastructure.Actor.POST;
@@ -22,6 +26,10 @@ using Infrastructure.Director.DELETE;
 using Infrastructure.Director.GET;
 using Infrastructure.Director.POST;
 using Infrastructure.Director.PUT;
+using Infrastructure.WhatchFrom.DELETE;
+using Infrastructure.WhatchFrom.GET;
+using Infrastructure.WhatchFrom.POST;
+using Infrastructure.WhatchFrom.PUT;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -49,6 +57,12 @@ public static class InfrastructureServices
         services.AddSingleton<IPostCategoryService, PostCategoryService>();
         services.AddSingleton<IPutCategoryService, PutCategoryService>();
         services.AddSingleton<IDeleteCategoryService, DeleteCategoryService>();
+
+        //WhatchFrom
+        services.AddSingleton<IGetWhatchFromService, GetWhatchFromService>();
+        services.AddSingleton<IPostWhatchFromService, PostWhatchFromService>();
+        services.AddSingleton<IPutWhatchFromService, PutWhatchFromService>();
+        services.AddSingleton<IDeleteWhatchFromService, DeleteWhatchFromService>();
 
         return services;
     }
