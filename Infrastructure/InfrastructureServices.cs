@@ -10,6 +10,10 @@ using Domain.Director.DELETE;
 using Domain.Director.GET;
 using Domain.Director.POST;
 using Domain.Director.PUT;
+using Domain.Film.DELETE;
+using Domain.Film.GET;
+using Domain.Film.POST;
+using Domain.Film.PUT;
 using Domain.WhatchFrom.DELETE;
 using Domain.WhatchFrom.GET;
 using Domain.WhatchFrom.POST;
@@ -26,6 +30,10 @@ using Infrastructure.Director.DELETE;
 using Infrastructure.Director.GET;
 using Infrastructure.Director.POST;
 using Infrastructure.Director.PUT;
+using Infrastructure.Film.DELETE;
+using Infrastructure.Film.GET;
+using Infrastructure.Film.POST;
+using Infrastructure.Film.PUT;
 using Infrastructure.WhatchFrom.DELETE;
 using Infrastructure.WhatchFrom.GET;
 using Infrastructure.WhatchFrom.POST;
@@ -63,6 +71,12 @@ public static class InfrastructureServices
         services.AddSingleton<IPostWhatchFromService, PostWhatchFromService>();
         services.AddSingleton<IPutWhatchFromService, PutWhatchFromService>();
         services.AddSingleton<IDeleteWhatchFromService, DeleteWhatchFromService>();
+
+        //Film
+        services.AddSingleton<IGetFilmService, GetFilmService>();
+        services.AddSingleton<IPostFilmService, PostFilmService>();
+        services.AddSingleton<IPutFilmService, PutFilmService>();
+        services.AddSingleton<IDeleteFilmService, DeleteFilmService>();
 
         return services;
     }

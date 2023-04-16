@@ -1,9 +1,10 @@
 ﻿using Domain.Actor.GET.Entities;
 using Domain.Category.GET.Entities;
+using Domain.Director.GET.Entities;
 using Domain.WhatchFrom.GET.Entities;
 
-namespace Domain.Director.GET.Entities;
-public class GetDirectorRequest
+namespace Domain.Film.GET.Entities;
+public class GetFilmResponse
 {
     public int Codigo { get; set; }
     public string Nome { get; set; }
