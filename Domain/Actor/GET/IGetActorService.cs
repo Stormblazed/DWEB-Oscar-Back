@@ -4,5 +4,5 @@ namespace Domain.Actor.GET;
 
 public interface IGetActorService
 {
-    public Task<GetActorResponse> GetActor(GetActorRequest request);
+    public Task<List<GetActorResponse>> GetActor(GetActorRequest request);
 }

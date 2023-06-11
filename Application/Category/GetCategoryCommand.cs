@@ -3,13 +3,13 @@ using Domain.Category.GET.Entities;
 using MediatR;
 
 namespace Application.Category;
-public class GetCategoryCommand : IRequest<GetCategoryResponse>
+public class GetCategoryCommand : IRequest<List<GetCategoryResponse>>
 {
     public int Codigo { get; set; }
     public string Nome { get; set; }
 }
 
-public class GetCategoryCommandHandle : IRequestHandler<GetCategoryCommand, GetCategoryResponse>
+public class GetCategoryCommandHandle : IRequestHandler<GetCategoryCommand, List<GetCategoryResponse>>
 {
     private readonly IGetCategoryService _service;
 
@@ -18,7 +18,7 @@ public class GetCategoryCommandHandle : IRequestHandler<GetCategoryCommand, GetC
         _service = service;
     }
 
-    public Task<GetCategoryResponse> Handle(GetCategoryCommand command, CancellationToken cancellationToken)
+    public Task<List<GetCategoryResponse>> Handle(GetCategoryCommand command, CancellationToken cancellationToken)
     {
         var request = new GetCategoryRequest() { Codigo = command.Codigo, Nome = command.Nome };
 

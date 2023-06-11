@@ -3,5 +3,5 @@
 namespace Domain.Category.GET;
 public interface IGetCategoryService
 {
-    public Task<GetCategoryResponse> GetCategory(GetCategoryRequest request);
+    public Task<List<GetCategoryResponse>> GetCategory(GetCategoryRequest request);
 }

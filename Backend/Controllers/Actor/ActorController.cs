@@ -7,10 +7,13 @@ namespace Backend.Controllers.Actor;
 public class ActorController : ApiControllerBase
 {
     [HttpGet("get-actor")]
-    public async Task<IActionResult> GetActor([FromQuery] string? name)
+    public async Task<IActionResult> GetActor([FromQuery] string? name, [FromQuery] int codigo, [FromQuery] int totalIndicacao, [FromQuery] DateTime datnascimeto)
     {
-        var command = new GetActorCommand() { 
-            Name = name
+        var command = new GetActorCommand() {
+           id = codigo,
+           datnascimento = datnascimeto,
+           totalint = totalIndicacao,
+           Name = name
         };
 
         return await Ok(command);

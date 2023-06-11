@@ -7,10 +7,11 @@ namespace Backend.Controllers.Category;
 public class CategoryController : ApiControllerBase
 {
     [HttpGet("get-category")]
-    public async Task<IActionResult> GetActor([FromQuery] string? name)
+    public async Task<IActionResult> GetActor([FromQuery] string? name , [FromQuery] int id)
     {
         var command = new GetCategoryCommand()
         {
+            Codigo = id,
             Nome = name
         };
 
