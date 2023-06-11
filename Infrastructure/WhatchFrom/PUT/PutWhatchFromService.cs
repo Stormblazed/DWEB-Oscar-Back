@@ -1,11 +1,29 @@
-﻿using Domain.WhatchFrom.PUT;
+﻿using Domain.Director.PUT.Entities;
+using Domain.WhatchFrom.PUT;
 using Domain.WhatchFrom.PUT.Entities;
 
 namespace Infrastructure.WhatchFrom.PUT;
 public class PutWhatchFromService : IPutWhatchFromService
 {
-    public Task<PutWhatchFromResponse> PutWhatchFrom(PutWhatchFromRequest request)
+    private readonly Connection _connection;
+
+    public PutWhatchFromService(Connection connection)
     {
-        return Task.FromResult(new PutWhatchFromResponse { CodigoBanco = 1546, Message = "Registro alterado com sucesso." });
+        _connection = connection;
+    }
+
+    public async Task<PutWhatchFromResponse> PutWhatchFrom(PutWhatchFromRequest request)
+    {
+        var response = new Domain.Entitie.WhatchFrom();
+        response = _connection.OndeAssistir.Find(request.codigo);
+        if (response == null)
+            return await Task.FromResult(new PutWhatchFromResponse() { Message = "Não foi encontrado o registro" });
+
+        response.Nome = request.nome;
+        response.Url = request.url;
+        response.Plataforma = request.Plataforma;
+        _connection.SaveChanges();
+
+        return await Task.FromResult(new PutWhatchFromResponse() { Message = "Ok" });        
     }
 }

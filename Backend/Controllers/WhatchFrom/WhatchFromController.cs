@@ -8,9 +8,9 @@ public class WhatchFromController : ApiControllerBase
 {
 
     [HttpGet("get-whatchfrom")]
-    public async Task<IActionResult> GetWhatchFrom([FromQuery] string? name)
+    public async Task<IActionResult> GetWhatchFrom([FromQuery] string? name, [FromQuery] string? plataform, [FromQuery] string? url, [FromQuery] int codigo)
     {
-        var command = new GetWhatchFromCommand() { Nome = name };
+        var command = new GetWhatchFromCommand() { Nome = name, Url = url, Codigo = codigo, Plataforma = plataform };
 
         return await Ok(command);
     }

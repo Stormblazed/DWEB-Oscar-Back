@@ -75,7 +75,7 @@ public class Connection : DbContext
                 .IsRequired()
                 .HasMaxLength(45);
 
-            entity.Property(e => e.URL)
+            entity.Property(e => e.Url)
                 .IsRequired()
                 .HasMaxLength(45);
 

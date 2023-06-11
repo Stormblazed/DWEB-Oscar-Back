@@ -3,5 +3,5 @@
 namespace Domain.WhatchFrom.GET;
 public interface IGetWhatchFromService
 {
-     public Task<GetWhatchFromResponse> GetWhatchFrom(GetWhatchFromRequest request);
+     public Task<List<GetWhatchFromResponse>> GetWhatchFrom(GetWhatchFromRequest request);
 }

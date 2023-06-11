@@ -7,6 +7,8 @@ public class PostWhatchFromCommand : IRequest<PostWhatchFromResponse>
 {
     public string nome { get; set; }
     public string url { get; set; }
+    public string plataforma { get; set; }
+
 }
 
 public class PostWhatchFromCommandHandle : IRequestHandler<PostWhatchFromCommand, PostWhatchFromResponse>
@@ -20,7 +22,7 @@ public class PostWhatchFromCommandHandle : IRequestHandler<PostWhatchFromCommand
 
     public Task<PostWhatchFromResponse> Handle(PostWhatchFromCommand command, CancellationToken cancellationToken)
     {
-        var request = new PostWhatchFromRequest() { nome = command.nome, url = command.url };
+        var request = new PostWhatchFromRequest() { nome = command.nome, url = command.url, plataforma = command.plataforma };
 
         return _service.PostWhatchFrom(request);
     }
