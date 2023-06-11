@@ -7,6 +7,7 @@ public class GetDirectorRequest
 {
     public int Codigo { get; set; }
     public string Nome { get; set; }
+    public DateTime DataNascimento { get; set; }
     public int TotalIndicacoes { get; set; }
     public GetWhatchFromResponse WhatchFromResponse { get; set; }
     public GetCategoryResponse GetCategoryResponse { get; set; }

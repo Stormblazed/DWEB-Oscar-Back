@@ -3,12 +3,12 @@ using Domain.Director.GET.Entities;
 using MediatR;
 
 namespace Application.Director;
-public class GetDirectorCommand : IRequest<GetDirectorResponse>
+public class GetDirectorCommand : IRequest<List<GetDirectorResponse>>
 {
     public string Nome { get; set; }
 }
 
-public class GetDirectorCommandHandle : IRequestHandler<GetDirectorCommand, GetDirectorResponse>
+public class GetDirectorCommandHandle : IRequestHandler<GetDirectorCommand, List<GetDirectorResponse>>
 {
     private readonly IGetDirectorService _service;
 
@@ -17,7 +17,7 @@ public class GetDirectorCommandHandle : IRequestHandler<GetDirectorCommand, GetD
         _service = service;
     }
 
-    public async Task<GetDirectorResponse> Handle(GetDirectorCommand command, CancellationToken cancellationToken)
+    public async Task<List<GetDirectorResponse>> Handle(GetDirectorCommand command, CancellationToken cancellationToken)
     {
         var request = new GetDirectorRequest { Nome = command.Nome };
 

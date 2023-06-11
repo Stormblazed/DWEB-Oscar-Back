@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure;
 public class Connection : DbContext
@@ -11,10 +12,15 @@ public class Connection : DbContext
     public DbSet<Domain.Entitie.CategoryFilm> CategoriasFilmes { get; set; }
     public DbSet<Domain.Entitie.FilmActor> FilmesAtores { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    private readonly IConfiguration configuration;
+    public Connection(IConfiguration configuration)
     {
-        string connectionString = "server=localhost;port=3306;database=dweb_oscar_banco;user=root;";
-        optionsBuilder.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 11)));
+        this.configuration = configuration;
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {        
+        optionsBuilder.UseMySql(configuration.GetConnectionString("MySql"), new MySqlServerVersion(new Version(8, 0, 11)));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -50,10 +56,12 @@ public class Connection : DbContext
                 .HasMaxLength(45);
 
             entity.Property(e => e.DataNascimento)
+                .HasColumnName("dataNasc")
                 .IsRequired()
                 .HasColumnType("DATE");
 
             entity.Property(e => e.TotalIndicacoes)
+                .HasColumnName("totindi")
                 .IsRequired();
         });
 
