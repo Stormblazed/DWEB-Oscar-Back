@@ -9,8 +9,7 @@ public class GetFilmResponse
     public int Codigo { get; set; }
     public string Nome { get; set; }
     public int TotalIndicacoes { get; set; }
-    public GetWhatchFromResponse WhatchFromResponse { get; set; }
-    public GetCategoryResponse GetCategoryResponse { get; set; }
-    public GetDirectorResponse GetDirectorResponse { get; set; }
-    public GetActorResponse GetActorResponse { get; set; }
+    public int ondeAssistir_id { get; set; }
+    public int diretor_id { get; set; }
+
 }

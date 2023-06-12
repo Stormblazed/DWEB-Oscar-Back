@@ -107,10 +107,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `DWEB_Oscar_banco`.`categoria_has_filme` ;
 
-CREATE TABLE IF NOT EXISTS `DWEB_Oscar_banco`.`categoria_has_filme` (
+CREATE TABLE IF NOT EXISTS `DWEB_Oscar_banco`.`categoria_has_filme` ( 
+ `id` INT NOT NULL AUTO_INCREMENT,
   `categoria_id` INT NOT NULL,
-  `filme_id` INT NOT NULL,
-  PRIMARY KEY (`categoria_id`, `filme_id`),
+  `filme_id` INT NOT NULL, 
+  PRIMARY KEY (`id`),
   INDEX `fk_categoria_has_filme_filme1_idx` (`filme_id` ) VISIBLE,
   INDEX `fk_categoria_has_filme_categoria1_idx` (`categoria_id` ) VISIBLE,
   CONSTRAINT `fk_categoria_has_filme_categoria1`
@@ -132,9 +133,10 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `DWEB_Oscar_banco`.`filme_has_ator` ;
 
 CREATE TABLE IF NOT EXISTS `DWEB_Oscar_banco`.`filme_has_ator` (
+ `id` INT NOT NULL AUTO_INCREMENT,
   `filme_id` INT NOT NULL,
-  `ator_id` INT NOT NULL,
-  PRIMARY KEY (`filme_id`, `ator_id`),
+  `ator_id` INT NOT NULL,  
+   PRIMARY KEY (`id`),
   INDEX `fk_filme_has_ator_ator1_idx` (`ator_id` ) VISIBLE,
   INDEX `fk_filme_has_ator_filme1_idx` (`filme_id` ) VISIBLE,
   CONSTRAINT `fk_filme_has_ator_filme1`

@@ -8,17 +8,26 @@ using Domain.WhatchFrom.GET.Entities;
 namespace Infrastructure.Film.GET;
 public class GetFilmService : IGetFilmService
 {
-    public async Task<GetFilmResponse> GetFilmResponse(GetFilmRequest request)
+    private readonly Connection _connection;
+
+    public GetFilmService(Connection connection)
     {
-        return await Task.FromResult(new GetFilmResponse
-        {
-            Codigo = 1,
-            GetActorResponse = new GetActorResponse() { Codigo = 1, DataNascimento = DateTime.Now, Nome = "Teste", TotalIndicacoes = 4 },
-            GetCategoryResponse = new GetCategoryResponse() { Codigo = 2, Nome = "Terror" },
-            GetDirectorResponse = new GetDirectorResponse() { Codigo = 2, DataNascimento = DateTime.Now, Nome = "Sr teste", TotalIndicacao = 45 },
-            Nome = "teste",
-            TotalIndicacoes = 23,
-            WhatchFromResponse = new GetWhatchFromResponse() { Codigo = 1, Nome = "Netflix", Url = "netflix.com.br" }
-        });
+        _connection = connection;
+    }
+
+    public async Task<List<GetFilmResponse>> GetFilmResponse(GetFilmRequest request)
+    {
+        var response = new List<Domain.Entitie.Film>();
+
+   
+        if (!String.IsNullOrEmpty(request.Nome) || request.ondeAssistir_id > 0  || request.categoryId > 0 || request.actorId > 0  || request.diretor_id > 0 || request.TotalIndicacoes > 0 || request.Codigo > 0)
+            response = _connection.Filmes.Where(film => film.Id == request.Codigo || film.Nome.Contains(request.Nome) || film.TotalIndicacoes == request.TotalIndicacoes || film.ondeAssistir_id == request.ondeAssistir_id ).ToList();
+        else
+            response = _connection.Filmes.ToList();        
+
+        return await Task.FromResult(response.Select(film => new GetFilmResponse() { Codigo = film.Id, ondeAssistir_id  = film.ondeAssistir_id, Nome = film.Nome, TotalIndicacoes = film.TotalIndicacoes, diretor_id = film.diretor_id }).ToList());
+
+
+   
     }
 }

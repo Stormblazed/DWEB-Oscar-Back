@@ -12,10 +12,10 @@ public class PutFilmCommand : IRequest<PutFilmResponse>
     public int Codigo { get; set; }
     public string Nome { get; set; }
     public int TotalIndicacoes { get; set; }
-    public GetWhatchFromResponse WhatchFromResponse { get; set; }
-    public GetCategoryResponse GetCategoryResponse { get; set; }
-    public GetDirectorResponse GetDirectorResponse { get; set; }
-    public GetActorResponse GetActorResponse { get; set; }
+    public int ondeAssistir_id { get; set; }
+    public int diretor_id { get; set; }
+    public int categoryId { get; set; }
+    public int actorId { get; set; }
 }
 
 public class PutFilmCommandHandle : IRequestHandler<PutFilmCommand, PutFilmResponse>
@@ -32,12 +32,12 @@ public class PutFilmCommandHandle : IRequestHandler<PutFilmCommand, PutFilmRespo
         var request = new PutFilmRequest() 
         { 
             Codigo = command.Codigo,
-            Nome = command.Nome, 
-            GetActorResponse = command.GetActorResponse ,
-            GetCategoryResponse = command.GetCategoryResponse,
-            GetDirectorResponse = command.GetDirectorResponse ,
-            TotalIndicacoes = command.TotalIndicacoes , 
-            WhatchFromResponse = command.WhatchFromResponse 
+            Nome = command.Nome,
+            TotalIndicacoes = command.TotalIndicacoes,
+            ondeAssistir_id = command.ondeAssistir_id,
+            diretor_id = command.diretor_id,
+            categoryId = command.categoryId,
+            actorId = command.actorId
         };
 
         return _service.PutFilmResponse(request);

@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace Domain.Entitie;
 public class FilmActor
 {
-    public int FilmeId { get; set; }
-    public int AtorId { get; set; }
+    public int id { get; set; }
+    public int filme_id { get; set; }
+    public int ator_id { get; set; }
 
     public Film Filme { get; set; }
     public Actor Ator { get; set; }

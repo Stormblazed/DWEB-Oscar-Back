@@ -92,20 +92,21 @@ public class Connection : DbContext
 
             entity.Property(e => e.Nome)
                 .IsRequired()
-                .HasMaxLength(45);
+                .HasMaxLength(45);          
 
             entity.Property(e => e.TotalIndicacoes)
+                .HasColumnName("totIndi")
                 .IsRequired();
 
             entity.HasOne(e => e.OndeAssistir)
                 .WithMany()
-                .HasForeignKey(e => e.OndeAssistirId)
+                .HasForeignKey(e => e.ondeAssistir_id)
                 .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("fk_filme_ondeAssistir");
 
             entity.HasOne(e => e.Diretor)
                 .WithMany()
-                .HasForeignKey(e => e.DiretorId)
+                .HasForeignKey(e => e.diretor_id)                
                 .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("fk_filme_diretor1");
         });
@@ -125,55 +126,39 @@ public class Connection : DbContext
         {
             entity.ToTable("categoria_has_filme");
 
-            entity.HasKey(e => new { e.CategoriaId, e.FilmeId });
+            entity.HasKey(e => new { e.id});
+            
 
             entity.HasOne(e => e.Categoria)
                 .WithMany()
-                .HasForeignKey(e => e.CategoriaId)
+                .HasForeignKey(e => e.categoria_id)
                 .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("fk_categoria_has_filme_categoria1");
 
             entity.HasOne(e => e.Filme)
                 .WithMany()
-                .HasForeignKey(e => new { e.FilmeId }) // Utilize as colunas corretas da chave estrangeira
+                .HasForeignKey(e => e.filme_id ) // Utilize as colunas corretas da chave estrangeira
                 .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("fk_categoria_has_filme_filme1");
         });
 
-        //modelBuilder.Entity<Domain.Entitie.CategoryFilm>(entity =>
-        //{
-        //    entity.ToTable("categoria_has_filme");
-
-        //    entity.HasKey(e => new { e.CategoriaId, e.FilmeId });
-
-        //    entity.HasOne(e => e.Categoria)
-        //        .WithMany()
-        //        .HasForeignKey(e => e.CategoriaId)
-        //        .OnDelete(DeleteBehavior.NoAction)
-        //        .HasConstraintName("fk_categoria_has_filme_categoria1");
-
-        //    entity.HasOne(e => e.Filme)
-        //        .WithMany()
-        //        .HasForeignKey(e => e.FilmeId)
-        //        .OnDelete(DeleteBehavior.NoAction)
-        //        .HasConstraintName("fk_categoria_has_filme_filme1");
-        //});
+       
 
         modelBuilder.Entity<Domain.Entitie.FilmActor>(entity =>
         {
             entity.ToTable("filme_has_ator");
 
-            entity.HasKey(e => new { e.FilmeId, e.AtorId });
+            entity.HasKey(e => new { e.id });
 
             entity.HasOne(e => e.Filme)
                 .WithMany()
-                .HasForeignKey(e => e.FilmeId)
+                .HasForeignKey(e => e.filme_id)
                 .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("fk_filme_has_ator_filme1");
 
             entity.HasOne(e => e.Ator)
                 .WithMany()
-                .HasForeignKey(e => e.AtorId)
+                .HasForeignKey(e => e.ator_id)
                 .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("fk_filme_has_ator_ator1");
         });

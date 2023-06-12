@@ -9,13 +9,12 @@ using MediatR;
 namespace Application.Film;
 public class PostFilmCommand : IRequest<PostFilmResponse>
 {
-    public int Codigo { get; set; }
     public string Nome { get; set; }
     public int TotalIndicacoes { get; set; }
-    public GetWhatchFromResponse WhatchFromResponse { get; set; }
-    public GetCategoryResponse GetCategoryResponse { get; set; }
-    public GetDirectorResponse GetDirectorResponse { get; set; }
-    public GetActorResponse GetActorResponse { get; set; }
+    public int OndeAssitirId { get; set; }
+    public int diretorId { get; set; }
+    public int categoryId { get; set; }
+    public int actorId { get; set; } 
 }
 
 public class PostFilmCommandHandler : IRequestHandler<PostFilmCommand, PostFilmResponse>
@@ -30,15 +29,16 @@ public class PostFilmCommandHandler : IRequestHandler<PostFilmCommand, PostFilmR
     public async Task<PostFilmResponse> Handle(PostFilmCommand command, CancellationToken cancellationToken)
     {
         var request = new PostFilmRequest()
-        {
-            Codigo = command.Codigo,
+        {           
             Nome = command.Nome,
-            GetActorResponse = command.GetActorResponse,
-            GetDirectorResponse = command.GetDirectorResponse,
-            GetCategoryResponse = command.GetCategoryResponse,
             TotalIndicacoes = command.TotalIndicacoes,
-            WhatchFromResponse = command.WhatchFromResponse
+            ondeAssistir_id = command.OndeAssitirId,
+            diretor_id = command.diretorId,
+            categoryId = command.categoryId,
+            actorId = command.actorId
         };
+
+         
 
         return await _service.PostFilmResponse(request);
     }
